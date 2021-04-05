@@ -7,6 +7,8 @@
 </head>
 <body>
     🐛🐛🐛 Here Come the Bugs 🐛🐛🐛
-    {{ bugs }}
+    {% for bug in bugs %}
+        <div>{{ bug.id }}</div>
+    {% endfor %}
 </body>
 </html>
