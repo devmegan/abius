@@ -10,7 +10,7 @@ class Bug(models.Model):
     """ model for the bugs """
     name = models.CharField(max_length=254, blank=False)
     description = models.TextField(blank=False)
-    urgency = models.IntegerField(range(1, 11), default=1, blank=False)
+    urgency = models.IntegerField(range(1, 4), default=1, blank=False)
     # user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL)
     date_added = models.DateTimeField(default=timezone.now, blank=False)
 

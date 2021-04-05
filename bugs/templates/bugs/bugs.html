@@ -1,10 +1,43 @@
 {% extends "base.html" %}
 {% block extra_title %} Bugs | {% endblock %}
 {% block content %}
-{{ bug.name }} {{ bug.urgency }}
-    🐛🐛🐛 Here Come the Bugs 🐛🐛🐛
-    {% for bug in bugs %}
-        <div>{{ bug.name }} - urgency: {{bug.urgency}}</div>
-    {% endfor %}
+<div class="container-fluid pt-4">
+<div class="row">
+<div class="col-4">
+    <div class="bg-dark p-3">
+        <div class="d-flex text-white">
+            <h4 class="lead mb-3"><b>Urgent</b></h4>
+            <button class="ml-auto btn-dark btn"><i class="fas fa-minus"></i></button>
+        </div>
+        {% for bug in urgent_bugs %}
+            <div class="card border-danger mb-2 p-2">{{ bug.name }}</div>
+        {% endfor %}
+    </div>
+</div>
+<div class="col-4">
+    <div class="bg-dark p-3">
+        <div class="d-flex text-white">
+            <h4 class="lead mb-3"><b>Important</b></h4>
+            <button class="ml-auto btn-dark btn"><i class="fas fa-minus"></i></button>
+        </div>
+        {% for bug in important_bugs %}
+            <div class="card border-danger mb-2 p-2">{{ bug.name }}</div>
+        {% endfor %}
+    </div>
+</div>
+<div class="col-4">
+    <div class="bg-dark p-3">
+        <div class="d-flex text-white">
+            <h4 class="lead mb-3"><b>Annoying</b></h4>
+            <button class="ml-auto btn-dark btn"><i class="fas fa-minus"></i></button>
+        </div>
+        {% for bug in annoying_bugs %}
+            <div class="card border-danger mb-2 p-2">{{ bug.name }}</div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+</div>
+
 {% endblock %}
 
