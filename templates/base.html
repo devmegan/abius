@@ -6,12 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block extra_meta %}
     {% endblock %}
+    <script src="https://kit.fontawesome.com/7268da00b7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>{% block extra_title %}{% endblock %}Bug Tracker</title>
 </head>
 <body>
-    <nav>Bug Tracker 🐛🐛🐛</nav>
-    <hr>
+    <nav class="navbar navbar-dark bg-dark d-flex justify-content-between">
+        <a class="bg-light rounded px-2 py-1 brand-bg text-dark link-dark" href="{% url 'index' %}"><i class="fas fa-bug"></i><b> ABIUS</b></span>
+         <a class="ml-auto link-silver text-uppercase" href="{% url 'bugs' %}">All Bugs</a>
+    </nav>
+    <section id="main-container" class="brand-bg particles-js">
     {% block content %}
     {% endblock %}
+    </section>
+    <style>
+        .link-silver {
+            color: silver;
+        }
+        .link-silver:hover {
+            text-decoration: none;
+            color: #fff;
+        }
+        .link-dark:hover {
+            text-decoration: none;
+            color: #000;
+        }
+        .brand-bg {
+            background-color: #9eabe4;
+            background-image: linear-gradient(315deg, #9eabe4 0%, #77eed8 74%);
+        }
+        #main-container {
+            min-height: 95vh;
+        }
+        #main-container {
+	background: linear-gradient(-45deg, #9eabe4, #77eed8);
+	background-size: 400% 400%;
+	animation: gradient 30s ease infinite;
+}
+.btn-dark {
+    color:silver;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+    </style>
 </body>
 </html>
