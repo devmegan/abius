@@ -5,4 +5,4 @@ from django.shortcuts import render, HttpResponse
 
 def index(request):
     """ view returns index page """
-    return HttpResponse("🐛🐛🐛 I am surrounded by bugs. 🐛🐛🐛")
+    return HttpResponse("🐛🐛🐛 Tracking bugs is super fun 🐛🐛🐛")
