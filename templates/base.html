@@ -12,8 +12,12 @@
 </head>
 <body>
     <nav class="navbar navbar-dark bg-dark d-flex justify-content-between">
-        <a class="bg-light rounded px-2 py-1 brand-bg text-dark link-dark" href="{% url 'index' %}"><i class="fas fa-bug"></i><b> ABIUS</b></span>
-         <a class="ml-auto link-silver text-uppercase" href="{% url 'bugs' %}">All Bugs</a>
+        <a class="bg-light rounded px-2 py-1 brand-bg text-dark link-dark" href="{% url 'index' %}"><i class="fas fa-bug"></i><b> ABIUS</b></a>
+        {% if user %}
+        <a class="ml-auto link-silver text-uppercase" href="{% url 'bugs' %}">All Bugs</a>
+        {% else %}
+        <a class="ml-auto link-silver text-uppercase" href="#">Sign In</a>
+        {% endif %}
     </nav>
     <section id="main-container" class="brand-bg particles-js">
     {% block content %}
