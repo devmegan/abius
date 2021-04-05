@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block extra_title %} Bugs | {% endblock %}
+{% block content %}
+{{ bug.name }} {{ bug.urgency }}
     🐛🐛🐛 Here Come the Bugs 🐛🐛🐛
     {% for bug in bugs %}
-        <div>{{ bug.id }}</div>
+        <div>{{ bug.name }} - urgency: {{bug.urgency}}</div>
     {% endfor %}
-</body>
-</html>
+{% endblock %}
+
