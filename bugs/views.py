@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from .models import Bug
 
 # Views for Home App below
@@ -21,10 +21,16 @@ def bugs(request):
 
 def bug_detail(request, bug_id):
     """ view to inspect bug in detail """
-    bug = Bug.objects.get(pk=bug_id)
+    bug = Bug.objects.get(id=bug_id)
 
     context = {
         'bug': bug,
     }
     return render(request, 'bugs/bug_detail.html', context)
 
+
+def delete_bug(request, bug_id):
+    """ view will delete bug forever """
+    bug = get_object_or_404(Bug, id=bug_id)
+    bug.delete()
+    return redirect('bugs')
