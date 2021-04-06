@@ -29,6 +29,14 @@ def bug_detail(request, bug_id):
     return render(request, 'bugs/bug_detail.html', context)
 
 
+def toggle_status(request, bug_id):
+    """ toggle the complete/incomplete status of bugs """
+    bug = get_object_or_404(Bug, id=bug_id)
+    bug.status = not bug.status  # invert bug status
+    bug.save()
+    return redirect('bugs')
+
+
 def delete_bug(request, bug_id):
     """ view will delete bug forever """
     bug = get_object_or_404(Bug, id=bug_id)

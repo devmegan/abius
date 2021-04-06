@@ -2,42 +2,75 @@
 {% block extra_title %} Bugs | {% endblock %}
 {% block content %}
 <div class="container-fluid pt-4">
-<div class="row">
-<div class="col-4">
-    <div class="bg-dark p-3">
-        <div class="d-flex text-white">
-            <h4 class="lead mb-3"><b>Urgent</b></h4>
-            <button class="ml-auto btn-dark btn"><i class="fas fa-minus"></i></button>
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <div class="bg-dark p-3 mb-3">
+                <div class="d-flex text-white">
+                    <h4 class="lead mb-3"><b>Urgent</b></h4>
+                    <button class="ml-auto btn-dark btn"><i class="fas fa-minus"></i></button>
+                </div>
+                {% for bug in urgent_bugs %}
+                    <div class="card mb-2 p-2">
+                        <div>
+                            <a href="{% url 'toggle_status' bug.id %}" class="text-muted text-decoration-none">
+                                {% if not bug.status %}
+                                <i class="far fa-square"></i>
+                                {% else %}
+                                <i class="far fa-check-square"></i>
+                                {% endif %}
+                            </a>
+                            <h6 class="d-inline">{{ bug.name }}</h6>
+                            <p class="mb-0"><small>{{ bug.assigned_to }}</small></p>
+                            <p class="border p-1 my-1"><small>{{ bug.description }}</small></p>
+                            <!--<a href="{% url 'delete_bug' bug.id %}" class="ml-auto text-muted"><i class="fas fa-trash"></i></a>-->
+                        </div>
+                     </div>
+                        {% endfor %}
+                <div class="mb-2 p-2 d-flex card">
+                    <div class="d-flex p-0 m-0">
+                        <span>Add</span>
+                        <a class="text-info ml-auto"><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
-        {% for bug in urgent_bugs %}
-            <div class="card border-danger mb-2 p-2">{{ bug.name }}</div>
-        {% endfor %}
+        <div class="col-12 col-md-4">
+            <div class="bg-dark p-3 mb-3">
+                <div class="d-flex text-white">
+                    <h4 class="lead mb-3"><b>Important</b></h4>
+                    <button class="ml-auto btn-dark btn"><i class="fas fa-minus"></i></button>
+                </div>
+                {% for bug in important_bugs %}
+                    <div class="card mb-2 p-2">
+                        <span>{{ bug.name }}</span>
+                    </div>
+                {% endfor %}
+                <div class="mb-2 p-2 d-flex card">
+                    <div class="d-flex p-0 m-0">
+                        <span>Add</span>
+                        <a class="text-info ml-auto"><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="bg-dark p-3 mb-3">
+                <div class="d-flex text-white">
+                    <h4 class="lead mb-3"><b>Annoying</b></h4>
+                    <button class="ml-auto btn-dark btn"><i class="fas fa-minus"></i></button>
+                </div>
+                {% for bug in annoying_bugs %}
+                    <div class="card mb-2 p-2">{{ bug.name }}</div>
+                {% endfor %}
+                <div class="mb-2 p-2 d-flex card">
+                    <div class="d-flex p-0 m-0">
+                        <span>Add</span>
+                        <a class="text-info ml-auto"><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<div class="col-4">
-    <div class="bg-dark p-3">
-        <div class="d-flex text-white">
-            <h4 class="lead mb-3"><b>Important</b></h4>
-            <button class="ml-auto btn-dark btn"><i class="fas fa-minus"></i></button>
-        </div>
-        {% for bug in important_bugs %}
-            <div class="card border-danger mb-2 p-2">{{ bug.name }}</div>
-        {% endfor %}
-    </div>
-</div>
-<div class="col-4">
-    <div class="bg-dark p-3">
-        <div class="d-flex text-white">
-            <h4 class="lead mb-3"><b>Annoying</b></h4>
-            <button class="ml-auto btn-dark btn"><i class="fas fa-minus"></i></button>
-        </div>
-        {% for bug in annoying_bugs %}
-            <div class="card border-danger mb-2 p-2">{{ bug.name }}</div>
-        {% endfor %}
-    </div>
-</div>
-</div>
-</div>
-
 {% endblock %}
 
