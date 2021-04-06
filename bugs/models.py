@@ -13,6 +13,7 @@ class Bug(models.Model):
     urgency = models.IntegerField(range(1, 4), default=1, blank=False)
     # user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL)
     date_added = models.DateTimeField(default=timezone.now, blank=False)
+    assigned_to = models.CharField(max_length=40, blank=False, default="unclaimed")
 
     def __str__(self):
         return self.name
