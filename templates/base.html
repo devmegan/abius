@@ -7,16 +7,17 @@
     {% block extra_meta %}
     {% endblock %}
     <script src="https://kit.fontawesome.com/7268da00b7.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <title>{% block extra_title %}{% endblock %}Bug Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+<title>{% block extra_title %}{% endblock %}Bug Tracker</title>
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-dark d-flex justify-content-between">
-        <a class="bg-light rounded px-2 py-1 brand-bg text-dark link-dark" href="{% url 'index' %}"><i class="fas fa-bug"></i><b> ABIUS</b></a>
+    <nav class="navbar navbar-dark bg-dark d-flex justify-content-between px-2">
+        <a class="bg-light rounded px-2 py-1 brand-bg text-dark link-dark text-decoration-none" href="{% url 'index' %}"><i class="fas fa-bug"></i><b> ABIUS</b></a>
         {% if user %}
-        <a class="ml-auto link-silver text-uppercase" href="{% url 'bugs' %}">All Bugs</a>
+        <a class="ms-auto link-silver text-uppercase text-decoration-none" href="{% url 'bugs' %}">All Bugs</a>
         {% else %}
-        <a class="ml-auto link-silver text-uppercase" href="#">Sign In</a>
+        <a class="ms-auto link-silver text-uppercase" href="#">Sign In</a>
         {% endif %}
     </nav>
     <section id="main-container" class="brand-bg particles-js">
@@ -63,5 +64,5 @@
 	}
 }
     </style>
-</body>
+    </body>
 </html>

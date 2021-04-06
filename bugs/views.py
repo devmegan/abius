@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from .models import Bug
+from .forms import BugForm
 
 # Views for Home App below
 
@@ -10,11 +11,21 @@ def bugs(request):
     urgent_bugs = bugs.filter(urgency=3)
     important_bugs = bugs.filter(urgency=2)
     annoying_bugs = bugs.filter(urgency=1)
+    add_bug_form = BugForm()
+
+    # handles add_bug form
+    if request.method == 'POST':
+        if 'description' in request.POST:
+            add_bug_form = BugForm(request.POST)
+            if add_bug_form.is_valid():
+                add_bug_form.save()
+            return redirect('bugs')
     context = {
         'bugs': bugs,
         'urgent_bugs': urgent_bugs,
         'important_bugs': important_bugs,
         'annoying_bugs': annoying_bugs,
+        'add_bug_form': add_bug_form
     }
     return render(request, 'bugs/bugs.html', context)
 
@@ -22,7 +33,6 @@ def bugs(request):
 def bug_detail(request, bug_id):
     """ view to inspect bug in detail """
     bug = Bug.objects.get(id=bug_id)
-
     context = {
         'bug': bug,
     }
@@ -33,6 +43,17 @@ def toggle_status(request, bug_id):
     """ toggle the complete/incomplete status of bugs """
     bug = get_object_or_404(Bug, id=bug_id)
     bug.status = not bug.status  # invert bug status
+    bug.save()
+    return redirect('bugs')
+
+
+def update_urgency(request, bug_id, direction):
+    """ increase or decrease bug urgency """
+    bug = get_object_or_404(Bug, id=bug_id)
+    if direction == "inc":
+        bug.urgency += 1
+    else:
+        bug.urgency -= 1
     bug.save()
     return redirect('bugs')
 
