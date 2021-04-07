@@ -26,20 +26,28 @@
     {% endblock %}
     </section>
     <script>
+        $(".report-bug-mtrigger").click(function(){
+            bugId = $(this).attr('id').split("-")[0] + "Bug"
+            setModalBugRadios(bugId)
+        })
         $(".urgency-bug-icon").click(function(){
-            $('.urgency-bug-icon').removeClass("text-warm text-warmer text-inferno").addClass("text-muted");
             bugId = $(this).attr('id');
-            if (bugId == "bugAnnoying"){
+            setModalBugRadios(bugId)
+        })
+
+        function setModalBugRadios(bugId){
+            $('.urgency-bug-icon').removeClass("text-warm text-warmer text-inferno").addClass("text-muted");
+            if (bugId == "annoyingBug"){
                 $('input[name="urgency"][value="1"]').prop('checked', true);
                 $(`#${bugId}`).removeClass("text-muted").addClass("text-warm");
-            } else if (bugId == "bugImportant") {
+            } else if (bugId == "importantBug") {
                 $('input[name="urgency"][value="2"]').prop('checked', true);
                 $(`#${bugId}`).removeClass("text-muted").addClass("text-warmer");
             } else {
                 $('input[name="urgency"][value="3"]').prop('checked', true);
                 $(`#${bugId}`).removeClass("text-muted").addClass("text-inferno");
             }
-        })
+        }
     </script>
     <style>
         .text-warm {
