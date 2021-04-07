@@ -21,14 +21,14 @@
                     <label class="form-label d-block" for="{{ add_bug_form.description.id_for_label }}">Describe what's going wrong:</label>
                     {{ add_bug_form.description }}
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 text-center">
                     <label class="form-label d-block" for="{{ add_bug_form.urgency.id_for_label }}">How critical is it to fix this bug:</label>
                     <input type="radio" id="id_urgency_1" name="urgency" value="1">
-                <label for="male"><i class="fas fa-bug text-muted"></i></label><br>
-                <input type="radio" id="id_urgency_2" name="urgency" value="2">
-                <label for="female"><i class="fas fa-bug text-warning"></i></label><br>
-                <input type="radio" id="id_urgency_3" name="urgency" value="3">
-                <label for="other"><i class="fas fa-bug text-danger"></i></label>
+                    <label for="male"><i class="fas fa-bug text-muted fa-3x d-inline"></i></label>
+                    <input type="radio" id="id_urgency_2" name="urgency" value="2">
+                    <label for="female"><i class="fas fa-bug text-warning fa-3x d-inline"></i></label>
+                    <input type="radio" id="id_urgency_3" name="urgency" value="3">
+                    <label for="other"><i class="fas fa-bug text-danger fa-3x d-inline"></i></label>
                 </div>
             </div>
             <div class="text-center">

@@ -7,3 +7,7 @@ class BugForm(forms.ModelForm):
     class Meta:
         model = Bug
         fields = ['name', 'description', 'urgency']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'w-100'}),
+            'description': forms.TextInput(attrs={'class': 'w-100'}),
+        }
