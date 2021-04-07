@@ -14,25 +14,44 @@
             {% csrf_token %}
             <div class="form-group">
                 <div class="mb-3">
-                    <label class="form-label d-block" for="{{ add_bug_form.name.id_for_label }}">Give your bug a name:</label>
+                    <label class="form-label d-block" for="{{ add_bug_form.name.id_for_label }}">Describe bug in a few words:</label>
                     {{ add_bug_form.name }}
                 </div>
                 <div class="mb-3">
-                    <label class="form-label d-block" for="{{ add_bug_form.description.id_for_label }}">Describe what's going wrong:</label>
+                    <label class="form-label d-block" for="{{ add_bug_form.description.id_for_label }}">Provide some detail on what's going wrong:</label>
                     {{ add_bug_form.description }}
                 </div>
-                <div class="mb-3 text-center">
-                    <label class="form-label d-block" for="{{ add_bug_form.urgency.id_for_label }}">How critical is it to fix this bug:</label>
-                    <input type="radio" id="id_urgency_1" name="urgency" value="1">
-                    <label for="male"><i class="fas fa-bug text-muted fa-3x d-inline"></i></label>
-                    <input type="radio" id="id_urgency_2" name="urgency" value="2">
-                    <label for="female"><i class="fas fa-bug text-warning fa-3x d-inline"></i></label>
-                    <input type="radio" id="id_urgency_3" name="urgency" value="3">
-                    <label for="other"><i class="fas fa-bug text-danger fa-3x d-inline"></i></label>
+                <div class="mb-5">
+                    <label class="form-label d-block mb-3" for="{{ add_bug_form.urgency.id_for_label }}">How critical is it to fix this bug:</label>
+                    <div class="text-center pt-3">
+                        <div class="row">
+                            <div class="col-4">
+                                <input class="d-none" type="radio" id="id_urgency_1" name="urgency" value="1">
+                                <label for="male" class="mx-3" data-toggle="tooltip" data-placement="right" title="This bug is annoying but does not affect business">
+                                    <i class="fas fa-bug text-muted fa-3x d-inline"></i>
+                                    <span class="d-block mt-2"><small>Just Annoying</small></span>
+                                </label>
+                            </div>
+                            <div class="col-4">
+                                <input class="d-none" type="radio" id="id_urgency_2" name="urgency" value="2">
+                                <label for="female" class="mx-3" data-toggle="tooltip" data-placement="right" title="This bug affects business as usual but there's a workaround">
+                                    <i class="fas fa-bug text-muted fa-3x d-inline"></i>
+                                    <span class="d-block mt-2"><small>Slows BAU</small></span>
+                                </label>
+                            </div>
+                            <div class="col-4">
+                                <input class="d-none" type="radio" id="id_urgency_3" name="urgency" value="3">
+                                <label for="other" class="mx-3" data-toggle="tooltip" data-placement="right" title="If this bug is not fixed business as usual is impossible" >
+                                    <i class="fas fa-bug text-muted fa-3x d-inline"></i>
+                                    <span class="d-block mt-2"><small>Prevents BAU</small></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="text-center">
-                <button class="w-50 btn btn-dark text-uppercase text-white" type="submit">Report!</button>
+                <button class="w-75 btn btn-dark text-uppercase text-white" type="submit">Report!</button>
             </div>
         </form>
       </div>

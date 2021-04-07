@@ -9,5 +9,5 @@ class BugForm(forms.ModelForm):
         fields = ['name', 'description', 'urgency']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'w-100'}),
-            'description': forms.TextInput(attrs={'class': 'w-100'}),
+            'description': forms.Textarea(attrs={'class': 'w-100', 'rows': 7}),
         }
