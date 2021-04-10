@@ -83,7 +83,10 @@
                                         <h6 class="d-inline">{{ bug.name }}</h6>
                                         </span>
                                          <span class="ms-auto ">
-                                            <a href="{% url 'update_urgency' bug.id 'dec' %}"><i class="fas fa-arrow-right text-muted fa-xs"></i></a>
+                                            <a href="{% url 'update_urgency' bug.id 'dec' %}">
+                                                <i class="d-none d-md-inline fas fa-arrow-right text-muted fa-xs"></i>
+                                                <i class="d-md-none fas fa-arrow-down text-muted fa-xs"></i>
+                                            </a>
                                         </span>
                                     </div>
                                     <p class="mb-0"><small>{{ bug.assigned_to }}</small></p>
@@ -117,9 +120,15 @@
                                         </a>
                                         <h6 class="d-inline">{{ bug.name }}</h6>
                                         </span>
-                                        <span class="ms-auto ">
-                                            <a href="{% url 'update_urgency' bug.id 'inc' %}"><i class="fas fa-arrow-left text-muted fa-xs"></i></a>
-                                            <a href="{% url 'update_urgency' bug.id 'dec' %}"><i class="fas fa-arrow-right text-muted fa-xs"></i></a>
+                                        <span class="ms-auto">
+                                            <a href="{% url 'update_urgency' bug.id 'inc' %}" class="text-decoration-none">
+                                                <i class="d-none d-md-inline fas fa-arrow-left text-muted fa-xs"></i>
+                                                <i class="d-md-none fas fa-arrow-up text-muted fa-xs"></i>
+                                            </a>
+                                            <a href="{% url 'update_urgency' bug.id 'dec' %}" class="text-decoration-none">
+                                                <i class="d-none d-md-inline fas fa-arrow-right text-muted fa-xs"></i>
+                                                <i class="d-md-none fas fa-arrow-down text-muted fa-xs"></i>
+                                            </a>
                                         </span>
                                     </div>
                                     <p class="mb-0"><small>{{ bug.assigned_to }}</small></p>
@@ -153,8 +162,11 @@
                                         </a>
                                         <h6 class="d-inline">{{ bug.name }}</h6>
                                         </span>
-                                         <span class="ms-auto ">
-                                            <a href="{% url 'update_urgency' bug.id 'inc' %}"><i class="fas fa-arrow-left text-muted fa-xs"></i></a>
+                                         <span class="ms-auto">
+                                            <a href="{% url 'update_urgency' bug.id 'inc' %}" class="text-decoration-none">
+                                                <i class="d-none d-md-inline fas fa-arrow-left text-muted fa-xs"></i>
+                                                <i class="d-md-none fas fa-arrow-up text-muted fa-xs"></i>
+                                            </a>
                                         </span>
                                     </div>
                                     <p class="mb-0"><small>{{ bug.assigned_to }}</small></p>
