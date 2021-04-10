@@ -37,10 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # allaquth requirement
+    # allauth requirement
     'django.contrib.sites',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
     # abius apps
     'home',
     'bugs',
