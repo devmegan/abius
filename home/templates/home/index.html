@@ -6,7 +6,15 @@
             <h1 class="text-dark text-uppercase display-3">ABIUS Bug Tracker</h1>
         </div>
        <div class="pt-5">
-            <button class="btn btn-dark btn-lg px-5 text-uppercase">Sign In</button>
+        {% if user.is_authenticated %}
+            {% if user.is_staff %}
+            <a href="{% url 'bugs' %}" class="btn btn-dark btn-lg px-5 text-uppercase">View Bugs</a>
+            {% else %}
+            <a href="{% url 'bugs' %}" class="btn btn-dark btn-lg px-5 text-uppercase">Report Bug</a>
+            {% endif %}
+        {% else %}
+            <a href="{% url 'account_login' %}" class="btn btn-dark btn-lg px-5 text-uppercase">Sign In</a>
+        {% endif %}
         </div>
     </div>
 {% endblock %}
