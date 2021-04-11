@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block extra_title %} Bugs | {% endblock %}
+{% block content %}
+<div class="container-fluid pt-4">
+    <div class="row">
+        <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+            <!-- Report A Bug Card -->
+            <div class="card bg-white p-3">
+                <h4 class="text-uppercase mb-4">Report a Bug</h4>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="mb-3">
+                            <label class="form-label d-block" for="{{ add_bug_form.name.id_for_label }}">Describe bug in a few words:</label>
+                            {{ add_bug_form.name }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label d-block" for="{{ add_bug_form.description.id_for_label }}">Provide some detail on what's going wrong:</label>
+                            {{ add_bug_form.description }}
+                        </div>
+                        <div class="mb-5">
+                            <label class="form-label d-block mb-3" for="{{ add_bug_form.urgency.id_for_label }}">How critical is it to fix this bug:</label>
+                            <div class="text-center pt-3">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <input class="d-none" type="radio" id="id_urgency_1" name="urgency" value="1">
+                                        <label for="id_urgency_1" class="mx-3" data-toggle="tooltip" data-placement="right" title="This bug is annoying but does not affect business">
+                                            <i class="fas fa-bug text-muted fa-3x d-inline urgency-bug-icon" id="annoyingBug"></i>
+                                            <span class="d-block mt-2"><small>Just Annoying</small></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-4">
+                                        <input class="d-none" type="radio" id="id_urgency_2" name="urgency" value="2">
+                                        <label for="id_urgency_2" class="mx-3" data-toggle="tooltip" data-placement="right" title="This bug affects business as usual but there's a workaround">
+                                            <i class="fas fa-bug text-muted fa-3x d-inline urgency-bug-icon" id="importantBug"></i>
+                                            <span class="d-block mt-2"><small>Slows BAU</small></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-4">
+                                        <input class="d-none" type="radio" id="id_urgency_3" name="urgency" value="3">
+                                        <label for="id_urgency_3" class="mx-3" data-toggle="tooltip" data-placement="right" title="If this bug is not fixed business as usual is impossible" >
+                                            <i class="fas fa-bug text-muted fa-3x d-inline urgency-bug-icon" id="urgentBug"></i>
+                                            <span class="d-block mt-2"><small>Prevents BAU</small></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="w-75 btn btn-dark text-uppercase text-white" type="submit">Report!</button>
+                    </div>
+                </form>
+              </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
