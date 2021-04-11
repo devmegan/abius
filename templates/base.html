@@ -18,7 +18,15 @@
             <i class="fas fa-bug"></i><b> ABIUS</b>
         </a>
         {% if user.is_authenticated %}
-        <a class="ms-auto link-silver text-uppercase text-decoration-none" href="{% url 'bugs' %}">All Bugs</a>
+        {% if user.is_staff %}
+        <a class="ms-auto link-silver text-uppercase text-decoration-none" href="{% url 'bugs' %}">
+            All Bugs
+        </a>
+        {% else %}
+        <a class="ms-auto link-silver text-uppercase text-decoration-none" href="{% url 'report_bug' %}">
+            Report Bug
+        </a>
+        {% endif %}
         <a href="{% url 'account_logout' %}" class="text-decoration-none link-silver">
             <i class="fas fa-sign-out-alt ms-3 fa-lg"></i>
         </a>
@@ -28,11 +36,30 @@
         </a>
         {% endif %}
     </nav>
-    <section id="main-container" class="brand-bg particles-js">
+    <section id="main-container" class="brand-bg">
+    {% if messages %}
+    <div class="toast-container position-absolute top-10 end-0 p-3">
+    {% for message in messages %}
+    <div class="toast show border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+        <div class="toast-header bg-toast-header">
+          <strong class="me-auto text-white text-uppercase"><i class="fas fa-bug"></i> Abius Alert</strong>
+          <button type="button" class="btn-close text-white bg-light" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            {{ message }}
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+    {% endif %}
     {% block content %}
     {% endblock %}
     </section>
     <script>
+        // initialise toast close btn
+        $(".btn-close").click(function(){
+            $(".toast").hide()
+        })
         $(".report-bug-mtrigger").click(function(){
             bugId = $(this).attr('id').split("-")[0] + "Bug"
             setModalBugRadios(bugId)
@@ -80,6 +107,11 @@
         .brand-bg {
             background-color: #9eabe4;
             background-image: linear-gradient(315deg, #9eabe4 0%, #77eed8 74%);
+        }
+        .bg-toast-header {
+            background-color: #8390c7;
+            background-image: linear-gradient(315deg, #416894
+ 0%, #243A52 100%);
         }
         #main-container {
             min-height: 95vh;
