@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
 from .models import Bug
 from .forms import BugForm
 
@@ -8,14 +10,18 @@ from .forms import BugForm
 
 @login_required
 def bugs(request):
-    user = get_object_or_404(User, username=request.user)
     """ view returns bugs page """
-    bugs = Bug.objects.all().order_by("urgency")
-    urgent_bugs = bugs.filter(urgency=3)
-    important_bugs = bugs.filter(urgency=2)
-    annoying_bugs = bugs.filter(urgency=1)
+
     add_bug_form = BugForm()
 
+    user = get_object_or_404(User, username=request.user)
+    if user.is_superuser:
+        bugs = Bug.objects.all().order_by("urgency")
+        urgent_bugs = bugs.filter(urgency=3)
+        important_bugs = bugs.filter(urgency=2)
+        annoying_bugs = bugs.filter(urgency=1)
+    else: 
+        return redirect('report_bug')
     # handles add_bug form
     if request.method == 'POST':
         if 'description' in request.POST:
@@ -33,13 +39,25 @@ def bugs(request):
     return render(request, 'bugs/bugs.html', context)
 
 
-def bug_detail(request, bug_id):
+def report_bug(request):
     """ view to inspect bug in detail """
-    bug = Bug.objects.get(id=bug_id)
+    
+    add_bug_form = BugForm()
+    
+    if request.method == 'POST':
+        if 'description' in request.POST:
+            add_bug_form = BugForm(request.POST)
+            if add_bug_form.is_valid():
+                new_bug = add_bug_form.save()
+                messages.info(
+                    request, f'"{new_bug.name}" has been reported to the bug squad.'
+                )
+                return redirect('index')
+    
     context = {
-        'bug': bug,
+        'add_bug_form': add_bug_form
     }
-    return render(request, 'bugs/bug_detail.html', context)
+    return render(request, 'bugs/report_bug.html', context)
 
 
 def toggle_status(request, bug_id):
