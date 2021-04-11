@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from .models import Bug
 from .forms import BugForm
 
 # Views for Home App below
 
-
+@login_required
 def bugs(request):
+    user = get_object_or_404(User, username=request.user)
     """ view returns bugs page """
     bugs = Bug.objects.all().order_by("urgency")
     urgent_bugs = bugs.filter(urgency=3)

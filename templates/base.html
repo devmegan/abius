@@ -14,11 +14,18 @@
 </head>
 <body>
     <nav class="navbar navbar-dark bg-dark d-flex justify-content-between px-2">
-        <a class="bg-light rounded px-2 py-1 brand-bg text-dark link-dark text-decoration-none" href="{% url 'index' %}"><i class="fas fa-bug"></i><b> ABIUS</b></a>
-        {% if user %}
+        <a class="bg-light rounded px-2 py-1 brand-bg text-dark link-dark text-decoration-none" href="{% url 'index' %}">
+            <i class="fas fa-bug"></i><b> ABIUS</b>
+        </a>
+        {% if user.is_authenticated %}
         <a class="ms-auto link-silver text-uppercase text-decoration-none" href="{% url 'bugs' %}">All Bugs</a>
+        <a href="{% url 'account_logout' %}" class="text-decoration-none link-silver">
+            <i class="fas fa-sign-out-alt ms-3 fa-lg"></i>
+        </a>
         {% else %}
-        <a class="ms-auto link-silver text-uppercase" href="#">Sign In</a>
+        <a class="ms-auto link-silver text-uppercase" href="{% url 'account_login' %}">
+            <i class="fas fa-sign-in-alt fa-lg"></i>
+        </a>
         {% endif %}
     </nav>
     <section id="main-container" class="brand-bg particles-js">
