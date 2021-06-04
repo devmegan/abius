@@ -80,11 +80,10 @@ def update_urgency(request, bug_id, direction):
 
 
 def edit_bug(request, bug_id):
+    
     """ view will edit bug description """
-
-    bug = get_object_or_404(Bug, id=bug_id)
-
     if request.POST: 
+        bug = get_object_or_404(Bug, id=bug_id)
         bug.description = request.POST['description']
         bug.save()
 

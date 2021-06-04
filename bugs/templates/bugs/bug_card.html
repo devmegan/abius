@@ -28,8 +28,9 @@
         </div>
         <a href="{% url 'delete_bug' bug.id %}"><i class="fas fa-trash text-muted"></i></a>
         <p class="mb-0"><small>{{ bug.assigned_to }}</small></p>
-            <form method="POST">
-            {% csrf_token %}
-            <p class="border p-1 my-1"><small>{{ bug.description }}</small></p>
+            <form method="POST" action="{% url 'edit_bug' bug.id %}">
+                {% csrf_token %}
+                <input class="w-100 card-input d-inline spaced-1 border p-1 my-1" id="description" name="description" value="{{bug.description}}">
+            </form>
     </div>
 </div>
