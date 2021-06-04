@@ -79,6 +79,17 @@ def update_urgency(request, bug_id, direction):
     return redirect('bugs')
 
 
+def edit_bug(request, bug_id):
+    """ view will edit bug description """
+
+    bug = get_object_or_404(Bug, id=bug_id)
+
+    if request.POST: 
+        bug.description = request.POST['description']
+        bug.save()
+
+    return redirect('bugs')
+
 def delete_bug(request, bug_id):
     """ view will delete bug forever """
     bug = get_object_or_404(Bug, id=bug_id)
