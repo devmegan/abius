@@ -68,31 +68,7 @@
                             <h4 class="lead mb-3"><b>Urgent</b></h4>
                         </div>
                         {% for bug in urgent_bugs %}
-                            <div class="card mb-2 p-2">
-                                <div>
-                                    <div class="d-flex">
-                                        <span>
-                                        <a href="{% url 'toggle_status' bug.id %}" class="text-muted text-decoration-none">
-                                            {% if not bug.status %}
-                                            <i class="far fa-square"></i>
-                                            {% else %}
-                                            <i class="far fa-check-square"></i>
-                                            {% endif %}
-                                        </a>
-                                        <h6 class="d-inline">{{ bug.name }}</h6>
-                                        </span>
-                                         <span class="ms-auto ">
-                                            <a href="{% url 'update_urgency' bug.id 'dec' %}" class="text-decoration-none">
-                                                <i class="d-none d-md-inline fas fa-arrow-right text-muted fa-xs"></i>
-                                                <i class="d-md-none fas fa-arrow-down text-muted fa-xs"></i>
-                                            </a>
-                                        </span>
-                                    </div>
-                                    <a href="{% url 'delete_bug' bug.id %}"><i class="fas fa-trash text-muted"></i></a>
-                                    <p class="mb-0"><small>{{ bug.assigned_to }}</small></p>
-                                    <p class="border p-1 my-1"><small>{{ bug.description }}</small></p>
-                                </div>
-                            </div>
+                            {% include "bugs/bug_card.html" %}
                         {% endfor %}
                         <button type="button" class="btn btn-dark ps-0 report-bug-mtrigger" id="urgent-bug-mtrigger" data-bs-toggle="modal" data-bs-target="#reportBugModal">
                             Report urgent bug..
@@ -105,35 +81,7 @@
                             <h4 class="lead mb-3"><b>Important</b></h4>
                            </div>
                         {% for bug in important_bugs %}
-                            <div class="card mb-2 p-2">
-                                <div>
-                                    <div class="d-flex">
-                                        <span>
-                                        <a href="{% url 'toggle_status' bug.id %}" class="text-muted text-decoration-none">
-                                            {% if not bug.status %}
-                                            <i class="far fa-square"></i>
-                                            {% else %}
-                                            <i class="far fa-check-square"></i>
-                                            {% endif %}
-                                        </a>
-                                        <h6 class="d-inline">{{ bug.name }}</h6>
-                                        </span>
-                                        <span class="ms-auto">
-                                            <a href="{% url 'update_urgency' bug.id 'inc' %}" class="text-decoration-none">
-                                                <i class="d-none d-md-inline fas fa-arrow-left text-muted fa-xs"></i>
-                                                <i class="d-md-none fas fa-arrow-up text-muted fa-xs"></i>
-                                            </a>
-                                            <a href="{% url 'update_urgency' bug.id 'dec' %}" class="text-decoration-none">
-                                                <i class="d-none d-md-inline fas fa-arrow-right text-muted fa-xs"></i>
-                                                <i class="d-md-none fas fa-arrow-down text-muted fa-xs"></i>
-                                            </a>
-                                        </span>
-                                    </div>
-                                    <a href="{% url 'delete_bug' bug.id %}"><i class="fas fa-trash text-muted"></i></a>
-                                    <span class="mb-0"><small>{{ bug.assigned_to }}</small></span>
-                                    <p class="border p-1 my-1"><small>{{ bug.description }}</small></p>
-                                   </div>
-                            </div>
+                            {% include "bugs/bug_card.html" %}
                         {% endfor %}
                         <button type="button" class="btn btn-dark ps-0 report-bug-mtrigger" id="important-bug-mtrigger" data-bs-toggle="modal" data-bs-target="#reportBugModal">
                             Report important bug..
@@ -146,31 +94,7 @@
                             <h4 class="lead mb-3"><b>Annoying</b></h4>
                         </div>
                         {% for bug in annoying_bugs %}
-                            <div class="card mb-2 p-2">
-                                <div>
-                                   <div class="d-flex">
-                                        <span>
-                                        <a href="{% url 'toggle_status' bug.id %}" class="text-muted text-decoration-none">
-                                            {% if not bug.status %}
-                                            <i class="far fa-square"></i>
-                                            {% else %}
-                                            <i class="far fa-check-square"></i>
-                                            {% endif %}
-                                        </a>
-                                        <h6 class="d-inline">{{ bug.name }}</h6>
-                                        </span>
-                                         <span class="ms-auto">
-                                            <a href="{% url 'update_urgency' bug.id 'inc' %}" class="text-decoration-none">
-                                                <i class="d-none d-md-inline fas fa-arrow-left text-muted fa-xs"></i>
-                                                <i class="d-md-none fas fa-arrow-up text-muted fa-xs"></i>
-                                            </a>
-                                        </span>
-                                    </div>
-                                    <a href="{% url 'delete_bug' bug.id %}"><i class="fas fa-trash text-muted"></i></a>
-                                    <p class="mb-0"><small>{{ bug.assigned_to }}</small></p>
-                                    <p class="border p-1 my-1"><small>{{ bug.description }}</small></p>
-                                     </div>
-                            </div>
+                            {% include "bugs/bug_card.html" %}
                         {% endfor %}
                         <button type="button" class="btn btn-dark ps-0 report-bug-mtrigger" id="annoying-bug-mtrigger" data-bs-toggle="modal" data-bs-target="#reportBugModal">
                             Report annoying bug..

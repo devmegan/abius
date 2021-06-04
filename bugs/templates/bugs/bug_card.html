@@ -1,0 +1,25 @@
+  <div class="card mb-2 p-2">
+                                <div>
+                                    <div class="d-flex">
+                                        <span>
+                                        <a href="{% url 'toggle_status' bug.id %}" class="text-muted text-decoration-none">
+                                            {% if not bug.status %}
+                                            <i class="far fa-square"></i>
+                                            {% else %}
+                                            <i class="far fa-check-square"></i>
+                                            {% endif %}
+                                        </a>
+                                        <h6 class="d-inline">{{ bug.name }}</h6>
+                                        </span>
+                                         <span class="ms-auto ">
+                                            <a href="{% url 'update_urgency' bug.id 'dec' %}" class="text-decoration-none">
+                                                <i class="d-none d-md-inline fas fa-arrow-right text-muted fa-xs"></i>
+                                                <i class="d-md-none fas fa-arrow-down text-muted fa-xs"></i>
+                                            </a>
+                                        </span>
+                                    </div>
+                                    <a href="{% url 'delete_bug' bug.id %}"><i class="fas fa-trash text-muted"></i></a>
+                                    <p class="mb-0"><small>{{ bug.assigned_to }}</small></p>
+                                    <p class="border p-1 my-1"><small>{{ bug.description }}</small></p>
+                                </div>
+                            </div>
