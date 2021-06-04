@@ -66,7 +66,6 @@
                     <div class="bg-dark p-3 mb-3">
                         <div class="d-flex text-white">
                             <h4 class="lead mb-3"><b>Urgent</b></h4>
-                            <button class="ms-auto btn-dark btn"><i class="fas fa-minus"></i></button>
                         </div>
                         {% for bug in urgent_bugs %}
                             <div class="card mb-2 p-2">
@@ -89,9 +88,9 @@
                                             </a>
                                         </span>
                                     </div>
+                                    <a href="{% url 'delete_bug' bug.id %}"><i class="fas fa-trash text-muted"></i></a>
                                     <p class="mb-0"><small>{{ bug.assigned_to }}</small></p>
                                     <p class="border p-1 my-1"><small>{{ bug.description }}</small></p>
-                                    <!--<a href="{% url 'delete_bug' bug.id %}" class="ms-auto text-muted"><i class="fas fa-trash"></i></a>-->
                                 </div>
                             </div>
                         {% endfor %}
@@ -104,8 +103,7 @@
                     <div class="bg-dark p-3 mb-3">
                         <div class="d-flex text-white">
                             <h4 class="lead mb-3"><b>Important</b></h4>
-                            <button class="ms-auto btn-dark btn"><i class="fas fa-minus"></i></button>
-                        </div>
+                           </div>
                         {% for bug in important_bugs %}
                             <div class="card mb-2 p-2">
                                 <div>
@@ -131,10 +129,10 @@
                                             </a>
                                         </span>
                                     </div>
-                                    <p class="mb-0"><small>{{ bug.assigned_to }}</small></p>
+                                    <a href="{% url 'delete_bug' bug.id %}"><i class="fas fa-trash text-muted"></i></a>
+                                    <span class="mb-0"><small>{{ bug.assigned_to }}</small></span>
                                     <p class="border p-1 my-1"><small>{{ bug.description }}</small></p>
-                                    <!--<a href="{% url 'delete_bug' bug.id %}" class="ms-auto text-muted"><i class="fas fa-trash"></i></a>-->
-                                </div>
+                                   </div>
                             </div>
                         {% endfor %}
                         <button type="button" class="btn btn-dark ps-0 report-bug-mtrigger" id="important-bug-mtrigger" data-bs-toggle="modal" data-bs-target="#reportBugModal">
@@ -146,7 +144,6 @@
                     <div class="bg-dark p-3 mb-3">
                         <div class="d-flex text-white">
                             <h4 class="lead mb-3"><b>Annoying</b></h4>
-                            <button class="ms-auto btn-dark btn"><i class="fas fa-minus"></i></button>
                         </div>
                         {% for bug in annoying_bugs %}
                             <div class="card mb-2 p-2">
@@ -169,10 +166,10 @@
                                             </a>
                                         </span>
                                     </div>
+                                    <a href="{% url 'delete_bug' bug.id %}"><i class="fas fa-trash text-muted"></i></a>
                                     <p class="mb-0"><small>{{ bug.assigned_to }}</small></p>
                                     <p class="border p-1 my-1"><small>{{ bug.description }}</small></p>
-                                    <!--<a href="{% url 'delete_bug' bug.id %}" class="ms-auto text-muted"><i class="fas fa-trash"></i></a>-->
-                                </div>
+                                     </div>
                             </div>
                         {% endfor %}
                         <button type="button" class="btn btn-dark ps-0 report-bug-mtrigger" id="annoying-bug-mtrigger" data-bs-toggle="modal" data-bs-target="#reportBugModal">
