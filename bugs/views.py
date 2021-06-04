@@ -16,7 +16,7 @@ def bugs(request):
 
     user = get_object_or_404(User, username=request.user)
     if user.is_superuser:
-        bugs = Bug.objects.all().order_by("urgency")
+        bugs = Bug.objects.all().order_by('-date_added')
         urgent_bugs = bugs.filter(urgency=3)
         important_bugs = bugs.filter(urgency=2)
         annoying_bugs = bugs.filter(urgency=1)
@@ -79,12 +79,22 @@ def update_urgency(request, bug_id, direction):
     return redirect('bugs')
 
 
-def edit_bug(request, bug_id):
-    
+def edit_bug_description(request, bug_id):
+
     """ view will edit bug description """
     if request.POST: 
         bug = get_object_or_404(Bug, id=bug_id)
         bug.description = request.POST['description']
+        bug.save()
+
+    return redirect('bugs')
+
+def edit_bug_name(request, bug_id):
+
+    """ view will edit bug description """
+    if request.POST: 
+        bug = get_object_or_404(Bug, id=bug_id)
+        bug.name = request.POST['name']
         bug.save()
 
     return redirect('bugs')

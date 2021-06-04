@@ -1,4 +1,4 @@
-  <div class="card mb-2 p-2">
+  <div class="card mb-3 p-2">
     <div>
         <div class="d-flex">
             <span>
@@ -6,10 +6,13 @@
                 {% if not bug.status %}
                 <i class="far fa-square"></i>
                 {% else %}
-                <i class="far fa-check-square"></i>
+                <i class="far fa-check-square text-success"></i>
                 {% endif %}
             </a>
-            <h6 class="d-inline">{{ bug.name }}</h6>
+            <form method="POST" action="{% url 'edit_bug_name' bug.id %}" class="d-inline">
+                {% csrf_token %}
+                <input class="d-inline border-0 fw-bold" id="name" name="name" value="{{ bug.name }}">
+            </form>
             </span>
                 <span class="ms-auto ">
                 {% if bug.urgency < 3 %}
@@ -26,11 +29,13 @@
                 {% endif %}
             </span>
         </div>
-        <a href="{% url 'delete_bug' bug.id %}"><i class="fas fa-trash text-muted"></i></a>
         <p class="mb-0"><small>{{ bug.assigned_to }}</small></p>
-            <form method="POST" action="{% url 'edit_bug' bug.id %}">
+        <p><small>Created: {{ bug.date_added }}</small></p>
+            <form method="POST" action="{% url 'edit_bug_description' bug.id %}">
                 {% csrf_token %}
-                <input class="w-100 card-input d-inline spaced-1 border p-1 my-1" id="description" name="description" value="{{bug.description}}">
+                <textarea class="w-100 card-input d-inline spaced-1 border p-1 my-1" id="description" name="description" rows="4">{{bug.description}}</textarea>
+                <button type="submit" class="btn btn-sm btn-dark"><i class="fas fa-check me-2"></i><small>update</small></button>
+                <a href="{% url 'delete_bug' bug.id %}" class="btn btn-sm btn-dark"><i class="fas fa-trash me-1"></i> <small>delete</small></a>
             </form>
     </div>
 </div>
