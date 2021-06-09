@@ -16,7 +16,7 @@
             </span>
                 <span class="ms-auto ">
                 {% if bug.urgency < 3 %}
-                    <a href="{% url 'update_urgency' bug.id 'dec' %}" class="text-decoration-none">
+                    <a href="{% url 'update_urgency' bug.id 'inc' %}" class="text-decoration-none">
                     <i class="d-none d-md-inline fas fa-arrow-left text-muted fa-xs"></i>
                     <i class="d-md-none fas fa-arrow-up text-muted fa-xs"></i>
                 </a>
